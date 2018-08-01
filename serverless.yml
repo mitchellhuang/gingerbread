@@ -1,0 +1,39 @@
+service: gingerbread
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: production
+  region: us-west-2
+  memorySize: 1024
+  timeout: 15
+  environment:
+    NODE_ENV: production
+    LAMBDA: 'true'
+
+plugins:
+  - serverless-offline
+  - serverless-domain-manager
+  - serverless-apigw-binary
+
+custom:
+  customDomain:
+    domainName: gingerbread.huang.mx
+    certificateName: '*.huang.mx'
+    createRoute53Record: false
+  apigwBinary:
+    types:
+      - '*/*'
+  serverless-offline:
+    port: 8000
+
+functions:
+  nextjs:
+    handler: lambda.handler
+    events:
+      - http:
+          method: ANY
+          path: /
+      - http:
+          method: ANY
+          path: /{any+}

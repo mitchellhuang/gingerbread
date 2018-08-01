@@ -6,14 +6,24 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-const server = express();
-server.get('*', (req, res) => handle(req, res));
+const createServer = () => {
+  const server = express();
+  server.get('*', (req, res) => handle(req, res));
+  return server;
+};
 
-app.prepare()
-  .then(() => {
-    server.listen(port, (err) => {
-      if (err) throw err;
-      // eslint-disable-next-line
-      console.log(`> Ready on http://localhost:${port}`);
+const server = createServer();
+
+if (!process.env.LAMBDA) {
+  app.prepare()
+    .then(() => {
+      server.listen(port, (err) => {
+        if (err) throw err;
+        // eslint-disable-next-line
+        console.log(`> Ready on http://localhost:${port}`);
+      });
     });
-  });
+}
+
+exports.app = app;
+exports.server = server;
