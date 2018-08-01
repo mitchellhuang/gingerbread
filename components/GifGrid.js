@@ -138,6 +138,9 @@ class GifGrid extends Component {
                   color: #333;
                   width: 100%;
                 }
+                button:focus {
+                  outline: none;
+                }
               `}</style>
             </div>
           )}
