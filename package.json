@@ -1,0 +1,31 @@
+{
+  "name": "gingerbread",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "Mitchell Huang <mitchell@mitchellhuang.net>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@zeit/next-css": "^0.2.0",
+    "axios": "^0.18.0",
+    "bootstrap-4-grid": "^2.4.0",
+    "express": "^4.16.3",
+    "next": "^6.1.1",
+    "normalize.css": "^8.0.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1"
+  }
+}
